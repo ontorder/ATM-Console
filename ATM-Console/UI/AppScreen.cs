@@ -1,11 +1,6 @@
-﻿using ATM_Console.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AtmConsole.Domain.Entities;
 
-namespace ATM_Console.UI
+namespace AtmConsole.ConsoleUi
 {
     public class AppScreen
     {
@@ -97,10 +92,10 @@ namespace ATM_Console.UI
             {
                 case 1:
                     return 500;
-                    //break;
+                //break;
                 case 2:
                     return 1000;
-                    //break;
+                //break;
                 case 3:
                     return 2000;
                 //break;
@@ -132,7 +127,5 @@ namespace ATM_Console.UI
             internalTransfer.RecipientBankAccountName = Utility.GetUserInput("Recipient's Account Name");
             return internalTransfer;
         }
-
-        
     }
 }

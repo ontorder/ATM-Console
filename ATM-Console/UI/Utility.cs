@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
+﻿using System.Globalization;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace ATM_Console.UI
+namespace AtmConsole.ConsoleUi
 {
     internal class Utility
     {
-        private static long tranId;
+        private readonly static CultureInfo s_culture = new("yo-NG");
+        private static long s_tranId;
+
         public static long GetTransactionId()
-        {
-            return ++tranId;
-        }
-        private static CultureInfo culture = new CultureInfo("yo-NG");
+            => ++s_tranId;
 
         //Thread.CurrentThread.CurrentCulture = culture;
         // Clone the NumberFormatInfo object and create
@@ -31,11 +25,11 @@ namespace ATM_Console.UI
             {
                 if (isPrompt) Console.WriteLine(prompt);
                 isPrompt = false;
-                ConsoleKeyInfo inputKey =  Console.ReadKey(true);
+                ConsoleKeyInfo inputKey = Console.ReadKey(true);
 
-                if(inputKey.Key == ConsoleKey.Enter)
+                if (inputKey.Key == ConsoleKey.Enter)
                 {
-                    if(input.Length == 6)
+                    if (input.Length == 6)
                     {
                         //Console.WriteLine("Check something");
                         break;
@@ -48,11 +42,11 @@ namespace ATM_Console.UI
                         continue;
                     }
                 }
-                if(inputKey.Key == ConsoleKey.Backspace && input.Length > 0)
+                if (inputKey.Key == ConsoleKey.Backspace && input.Length > 0)
                 {
-                    input.Remove(input.Length - 1,1);
+                    input.Remove(input.Length - 1, 1);
                 }
-                else if(inputKey.Key != ConsoleKey.Backspace)
+                else if (inputKey.Key != ConsoleKey.Backspace)
                 {
                     input.Append(inputKey.KeyChar);
                     Console.Write(asterics + "*");
@@ -60,7 +54,8 @@ namespace ATM_Console.UI
             }
             return input.ToString();
         }
-        public static void PrintMessage(string msg,bool success=true)
+
+        public static void PrintMessage(string msg, bool success = true)
         {
             if (success)
             {
@@ -74,12 +69,14 @@ namespace ATM_Console.UI
             Console.ForegroundColor = ConsoleColor.Green;
             PressEnterToContinue();
         }
+
         public static string GetUserInput(string prompt)
         {
             Console.WriteLine($"Enter {prompt}");
 
             return Console.ReadLine();
         }
+
         public static void PressEnterToContinue()
         {
             Console.WriteLine("\nEnter to Continue...\n");
@@ -99,7 +96,7 @@ namespace ATM_Console.UI
         public static string FormatAmount(decimal amt)
         {
             //return amt.ToString("C2",CultureInfo.CreateSpecificCulture("en-US"));
-            return String.Format(culture, "{0:C2}", amt);
+            return String.Format(s_culture, "{0:C2}", amt);
         }
     }
 }

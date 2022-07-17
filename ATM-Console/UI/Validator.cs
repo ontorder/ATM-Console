@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
-namespace ATM_Console.UI
+namespace AtmConsole.ConsoleUi
 {
     public static class Validator
     {
-        public static T? Convert <T>(string prompt)
+        public static T? Convert<T>(string prompt)
         {
             bool valid = false;
             string userInput;
@@ -19,10 +14,10 @@ namespace ATM_Console.UI
                 userInput = Utility.GetUserInput(prompt);
                 try
                 {
-                  var converter = TypeDescriptor.GetConverter(typeof(T));
-                 if (converter != null)
+                    var converter = TypeDescriptor.GetConverter(typeof(T));
+                    if (converter != null)
                     {
-                        return (T) converter.ConvertFromString(userInput);
+                        return (T)converter.ConvertFromString(userInput);
                     }
                     else
                     {
@@ -32,11 +27,10 @@ namespace ATM_Console.UI
                 catch
                 {
 
-                    Utility.PrintMessage("Invalid Input. Try again.",false);
+                    Utility.PrintMessage("Invalid Input. Try again.", false);
                 }
             }
             return default;
         }
-
     }
 }

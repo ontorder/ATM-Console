@@ -1,20 +1,10 @@
-﻿using ATM_Console.UI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ATM_Console.App
+﻿namespace AtmConsole.App
 {
     internal class Entry
     {
         static void Main(string[] args)
-
         {
-            
-
-            ATM_App atmApp = new ATM_App();
+            AtmApp atmApp = new();
             atmApp.InitializeData();
             atmApp.Run();
             //Utility.PressEnterToContinue();

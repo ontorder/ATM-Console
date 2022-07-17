@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ATM_Console
+﻿namespace AtmConsole
 {
     public class Logs
     {
-        public string? notes { get; }
-        public DateTime? date { get; }
+        public string? Notes { get; }
+        public DateTime? Date { get; }
 
-        public Logs(string notes,DateTime date)
+        public Logs(string notes, DateTime date)
         {
-            this.notes = notes;
-            this.date = date;
+            Notes = notes;
+            Date = date;
         }
     }
 }

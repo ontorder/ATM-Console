@@ -1,23 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ATM_Console
+﻿namespace AtmConsole
 {
-    public class ATM
+    public class Atm
     {
-        public int amount = 10000;
-        List<Logs> allLogs = new List<Logs> ();
-        public int makeWithdrawal(int amount,string reason)
-        {
-            return this.amount - amount;
-        }
+        public int Amount = 10000;
+        private List<Logs> _allLogs = new();
 
-        public int makeDeposit(int amount)
-        {
-            return this.amount + amount;
-        }
+        public int MakeWithdrawal(int amount, string reason)
+            => Amount - amount;
+
+        public int MakeDeposit(int amount)
+            => Amount + amount;
     }
 }
