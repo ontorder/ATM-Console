@@ -4,11 +4,11 @@ namespace AtmConsole.Repositories.UserAccounts
 {
     public class UserAccountStaticRepository : IUserAccountRepository
     {
-        private List<UserAccount> _userAccountList;
+        private List<UserAccount> _userAccounts;
 
         public UserAccountStaticRepository()
         {
-            _userAccountList = new List<UserAccount>
+            _userAccounts = new List<UserAccount>
             {
                 new UserAccount(
                     id: 1,
@@ -46,11 +46,11 @@ namespace AtmConsole.Repositories.UserAccounts
         }
 
         public IEnumerable<UserAccount> Get()
-            => _userAccountList;
+            => _userAccounts;
 
         public UserAccount? Search(long cardNumber)
         {
-            var account = _userAccountList.Where(ua => ua.CardNumber == cardNumber);
+            var account = _userAccounts.Where(ua => ua.CardNumber == cardNumber);
             if (!account.Any()) return null;
             if (account.Count() > 1) throw new InvalidDataException("More than one account with given card number");
             return account.First();
@@ -58,7 +58,7 @@ namespace AtmConsole.Repositories.UserAccounts
 
         public void Update(UserAccount ua)
         {
-            var current = _userAccountList.Single(_ => _.UserAccountId == ua.UserAccountId);
+            var current = _userAccounts.Single(_ => _.UserAccountId == ua.UserAccountId);
             current.AccountNumber = ua.AccountNumber;
             current.AccountBalance = ua.AccountBalance;
             current.AuthFailsCount = ua.AuthFailsCount;
@@ -67,5 +67,8 @@ namespace AtmConsole.Repositories.UserAccounts
             current.FullName = ua.FullName;
             current.IsLocked = ua.IsLocked;
         }
+
+        public UserAccount Find(long userId) =>
+            _userAccounts.Single(_ => _.UserAccountId == userId);
     }
 }

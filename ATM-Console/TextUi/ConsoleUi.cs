@@ -77,7 +77,7 @@ namespace AtmConsole.TextUi
             Console.Clear();
         }
 
-        internal static int SelectAmount()
+        internal static int? SelectAmount()
         {
             Console.WriteLine("");
             Console.WriteLine(":1.{0}500         5.{0}10,000", cur);
@@ -111,8 +111,7 @@ namespace AtmConsole.TextUi
                     return 0;
                 default:
                     Utility.PrintMessage("Invalid Input. Try Again.", false);
-                    //SelectAmount();
-                    return -1;
+                    return null;
             }
         }
 

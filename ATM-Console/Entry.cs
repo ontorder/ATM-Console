@@ -12,12 +12,14 @@ namespace AtmConsole
         {
             var userAccounts = new UserAccountStaticRepository();
             var transactions = new TransactionMemoryRepository();
-            var context = new Repositories.AtmConsoleContext(transactions, userAccounts);
+            var context = new Repositories.AtmContext(transactions, userAccounts);
 
             var userAuth = new RetryUserAuthentication(userAccounts);
             var cardAuth = new CardAuthentication();
 
-            var atmApp = new AtmApp(context, userAuth, cardAuth);
+            var atm = new AtmAppService(context);
+
+            var atmApp = new AtmApp(userAuth, cardAuth, atm);
             atmApp.Run();
         }
     }

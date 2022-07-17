@@ -7,16 +7,16 @@
         public DateTime TransactionDate { get; set; }
         public long TransactionId { get; set; }
         public TransactionType TransactionType { get; set; }
-        public long UserBankAccountID { get; set; }
+        public long UserAccountId { get; set; }
 
-        public Transaction(long transactionId, string? description, decimal transactionAmount, DateTime transactionDate, TransactionType transactionType, long userBankAccountID)
+        public Transaction(long transactionId, string? description, decimal transactionAmount, DateTime transactionDate, TransactionType transactionType, long userAccountId)
         {
             Description = description;
             TransactionAmount = transactionAmount;
             TransactionDate = transactionDate;
             TransactionId = transactionId;
             TransactionType = transactionType;
-            UserBankAccountID = userBankAccountID;
+            UserAccountId = userAccountId;
         }
     }
 }

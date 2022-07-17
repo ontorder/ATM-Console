@@ -3,12 +3,12 @@ using AtmConsole.Domain.UserAccounts;
 
 namespace AtmConsole.Repositories
 {
-    public class AtmConsoleContext
+    public class AtmContext
     {
         public readonly ITransactionRepository Transactions;
         public readonly IUserAccountRepository UserAccounts;
 
-        public AtmConsoleContext(ITransactionRepository transactions, IUserAccountRepository userAccounts)
+        public AtmContext(ITransactionRepository transactions, IUserAccountRepository userAccounts)
         {
             Transactions = transactions;
             UserAccounts = userAccounts;

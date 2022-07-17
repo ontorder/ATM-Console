@@ -26,7 +26,6 @@ namespace AtmConsole.TextUi
                 }
                 catch
                 {
-
                     Utility.PrintMessage("Invalid Input. Try again.", false);
                 }
             }

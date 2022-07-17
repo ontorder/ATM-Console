@@ -10,6 +10,9 @@ namespace AtmConsole.Repositories.Transactions
         public IEnumerable<Transaction> Get()
             => _transactions;
 
+        public IEnumerable<Transaction> Get(long accountId)
+            => _transactions.Where(t => t.UserAccountId == accountId);
+
         public void Add(Transaction transaction)
         {
             if (transaction.TransactionId == default)
