@@ -2,11 +2,11 @@
 
 namespace AtmConsole.Repositories.UserAccounts
 {
-    public class UserAccountsStaticRepository : IUserAccountsRepository
+    public class UserAccountStaticRepository : IUserAccountRepository
     {
         private List<UserAccount> _userAccountList;
 
-        public UserAccountsStaticRepository()
+        public UserAccountStaticRepository()
         {
             _userAccountList = new List<UserAccount>
             {
@@ -18,7 +18,7 @@ namespace AtmConsole.Repositories.UserAccounts
                     cardPin: 321321,
                     fullName: "Uzumaki Naruto",
                     isLocked: false,
-                    totalLogin: 0
+                    authFailsCount: 0
                 ),
 
                 new UserAccount(
@@ -29,7 +29,7 @@ namespace AtmConsole.Repositories.UserAccounts
                     cardPin: 789789,
                     fullName: "Hatake Kakashi",
                     isLocked: false,
-                    totalLogin: 0
+                    authFailsCount: 0
                 ),
 
                 new UserAccount(
@@ -40,12 +40,32 @@ namespace AtmConsole.Repositories.UserAccounts
                     cardPin: 579579,
                     fullName: "Hyuga Hinata",
                     isLocked: true,
-                    totalLogin: 0
+                    authFailsCount: 0
                 )
             };
         }
 
         public IEnumerable<UserAccount> Get()
             => _userAccountList;
+
+        public UserAccount? Search(long cardNumber)
+        {
+            var account = _userAccountList.Where(ua => ua.CardNumber == cardNumber);
+            if (!account.Any()) return null;
+            if (account.Count() > 1) throw new InvalidDataException("More than one account with given card number");
+            return account.First();
+        }
+
+        public void Update(UserAccount ua)
+        {
+            var current = _userAccountList.Single(_ => _.UserAccountId == ua.UserAccountId);
+            current.AccountNumber = ua.AccountNumber;
+            current.AccountBalance = ua.AccountBalance;
+            current.AuthFailsCount = ua.AuthFailsCount;
+            current.CardNumber = ua.CardNumber;
+            current.CardPin = ua.CardPin;
+            current.FullName = ua.FullName;
+            current.IsLocked = ua.IsLocked;
+        }
     }
 }

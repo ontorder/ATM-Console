@@ -1,11 +1,19 @@
-﻿using AtmConsole.Domain.UserAccounts;
-using AtmConsole.Domain.InternalTransfers;
+﻿using AtmConsole.Domain.InternalTransfers;
 
-namespace AtmConsole.ConsoleUi
+namespace AtmConsole.TextUi
 {
-    public class AppScreen
+    public class ConsoleUi
     {
         internal const string cur = "N";
+
+        private readonly TextReader _stdin;
+        private readonly TextWriter _stdout;
+
+        public ConsoleUi(TextReader stdin, TextWriter stdout)
+        {
+            _stdin = stdin;
+            _stdout = stdout;
+        }
 
         internal static void Welcome()
         {
@@ -20,19 +28,18 @@ namespace AtmConsole.ConsoleUi
             Utility.PressEnterToContinue();
         }
 
-        public static UserAccount UserLoginForm()
+        public static long AskCardNumber()
         {
-            var CardNumber = Validator.Convert<long>("Your card number");
-            var CardPin = Convert.ToInt32(Utility.GetSecretInput("Enter your Card Pin"));
-            var tempUserAccount = new UserAccount(0, 0, 0, CardNumber, CardPin, null, false, 0);
-
-            return tempUserAccount;
+            return Validator.Convert<long>("Your card number");
+        }
+        public static int AskPinNumber()
+        {
+            return Convert.ToInt32(Utility.GetSecretInput("Enter your Card Pin"));
         }
 
         public static void LoginProgress()
         {
             Console.WriteLine("\nChecking Card number and PIN...");
-            // I already sent a defualt timer of 10, check the Utility class out
             Utility.PrintDotAnimation();
         }
 
@@ -42,7 +49,6 @@ namespace AtmConsole.ConsoleUi
             Utility.PrintMessage("Your account is locked. Please go to the nearest branch to " +
                 "unlock your account. Thank you.", true);
             Utility.PressEnterToContinue();
-            Environment.Exit(1);
         }
 
         internal static void WelcomeCustomer(string fullname)
@@ -62,7 +68,6 @@ namespace AtmConsole.ConsoleUi
             Console.WriteLine("4. Transfer                  :");
             Console.WriteLine("5. Transactions              :");
             Console.WriteLine("6. Logout                    :");
-            //Utility.PressEnterToContinue();
         }
 
         internal static void LogoutProgress()
@@ -70,7 +75,6 @@ namespace AtmConsole.ConsoleUi
             Console.WriteLine("Thank You for using my ATM App.");
             Utility.PrintDotAnimation();
             Console.Clear();
-
         }
 
         internal static int SelectAmount()
@@ -88,10 +92,8 @@ namespace AtmConsole.ConsoleUi
             {
                 case 1:
                     return 500;
-                //break;
                 case 2:
                     return 1000;
-                //break;
                 case 3:
                     return 2000;
                 //break;

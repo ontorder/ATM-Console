@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace AtmConsole.ConsoleUi
+namespace AtmConsole.TextUi
 {
     public static class Validator
     {

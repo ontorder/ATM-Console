@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using System.Text;
 
-namespace AtmConsole.ConsoleUi
+namespace AtmConsole.TextUi
 {
     internal class Utility
     {
