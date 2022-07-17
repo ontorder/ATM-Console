@@ -6,10 +6,6 @@ namespace AtmConsole.ConsoleUi
     internal class Utility
     {
         private readonly static CultureInfo s_culture = new("yo-NG");
-        private static long s_tranId;
-
-        public static long GetTransactionId()
-            => ++s_tranId;
 
         //Thread.CurrentThread.CurrentCulture = culture;
         // Clone the NumberFormatInfo object and create
@@ -20,7 +16,7 @@ namespace AtmConsole.ConsoleUi
             bool isPrompt = true;
             string asterics = "";
 
-            StringBuilder input = new StringBuilder();
+            var input = new StringBuilder();
             while (true)
             {
                 if (isPrompt) Console.WriteLine(prompt);

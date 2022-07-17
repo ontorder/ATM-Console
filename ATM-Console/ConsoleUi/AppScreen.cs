@@ -1,4 +1,5 @@
-﻿using AtmConsole.Domain.Entities;
+﻿using AtmConsole.Domain.UserAccounts;
+using AtmConsole.Domain.InternalTransfers;
 
 namespace AtmConsole.ConsoleUi
 {
@@ -8,27 +9,22 @@ namespace AtmConsole.ConsoleUi
 
         internal static void Welcome()
         {
-            //Clears the console screen
             Console.Clear();
-            //The title of the console window
             Console.Title = "ATM App";
-            //Sets the foreground color
             Console.ForegroundColor = ConsoleColor.Green;
 
-            //Setting the welcome message
             Console.WriteLine("\n\n--------------Welcome to My ATM App--------------\n\n");
-
             Console.WriteLine("Please insert your ATM Card");
-            Console.WriteLine("Note: Actual ATM Machines will accept and validate physical ATM Card," +
+            Console.WriteLine("Note: Actual ATM Machines will accept and validate physical ATM Card, " +
                 "read the card number and validate it.");
             Utility.PressEnterToContinue();
         }
 
         public static UserAccount UserLoginForm()
         {
-            UserAccount tempUserAccount = new UserAccount();
-            tempUserAccount.CardNumber = Validator.Convert<long>("Your card number");
-            tempUserAccount.CardPin = Convert.ToInt32(Utility.GetSecretInput("Enter your Card Pin"));
+            var CardNumber = Validator.Convert<long>("Your card number");
+            var CardPin = Convert.ToInt32(Utility.GetSecretInput("Enter your Card Pin"));
+            var tempUserAccount = new UserAccount(0, 0, 0, CardNumber, CardPin, null, false, 0);
 
             return tempUserAccount;
         }
@@ -118,14 +114,13 @@ namespace AtmConsole.ConsoleUi
             }
         }
 
-        internal InternalTransfer InternalTransferForm()
+        internal static InternalTransfer InternalTransferForm()
         {
-            var internalTransfer = new InternalTransfer();
-            internalTransfer.RecipientBankAccountNumber = Validator.Convert<long>("Recipient's Account Number");
-            internalTransfer.TransferAmount = Validator.Convert<decimal>($"amount {cur}");
+            long recipientBankAccountNumber = Validator.Convert<long>("Recipient's Account Number");
+            decimal transferAmount = Validator.Convert<decimal>($"amount {cur}");
+            string recipientBankAccountName = Utility.GetUserInput("Recipient's Account Name");
 
-            internalTransfer.RecipientBankAccountName = Utility.GetUserInput("Recipient's Account Name");
-            return internalTransfer;
+            return new InternalTransfer(recipientBankAccountName, recipientBankAccountNumber, transferAmount);
         }
     }
 }

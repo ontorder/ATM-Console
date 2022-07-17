@@ -1,10 +1,10 @@
-﻿using AtmConsole.Domain.Enums;
+﻿using AtmConsole.Domain.Transactions;
 
 namespace AtmConsole.Domain.Interfaces
 {
-    internal interface ITransaction
+    public interface ITransaction
     {
-        void InsertTransaction(long _UserBankAccountId, TransactionType _tranType, decimal _tranAmount, string _desc);
+        void InsertTransaction(long userBankAccountId, TransactionType transactionType, decimal transactionAmount, string description);
         void ViewTransaction();
     }
 }

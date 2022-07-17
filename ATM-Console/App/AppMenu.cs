@@ -1,4 +1,4 @@
-﻿namespace AtmConsole.Domain.Enums
+﻿namespace AtmConsole.App
 {
     public enum AppMenu
     {
