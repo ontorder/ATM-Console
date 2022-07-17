@@ -1,6 +1,5 @@
 ﻿using AtmConsole.App;
-using AtmConsole.Domain.Authentication;
-using AtmConsole.Domain.Services.Authentication;
+using AtmConsole.DomainServices.Authentication;
 using AtmConsole.Repositories.Transactions;
 using AtmConsole.Repositories.UserAccounts;
 

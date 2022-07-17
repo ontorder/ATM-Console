@@ -1,7 +1,7 @@
 ﻿using AtmConsole.Domain.Authentication;
 using AtmConsole.Domain.UserAccounts;
 
-namespace AtmConsole.Domain.Services.Authentication
+namespace AtmConsole.DomainServices.Authentication
 {
     public class RetryUserAuthentication : IUserAuthentication
     {

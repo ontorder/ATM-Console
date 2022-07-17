@@ -1,6 +1,7 @@
-﻿using AtmConsole.Domain.UserAccounts;
+﻿using AtmConsole.Domain.Authentication;
+using AtmConsole.Domain.UserAccounts;
 
-namespace AtmConsole.Domain.Authentication
+namespace AtmConsole.DomainServices.Authentication
 {
     public class CardAuthentication : ICardAuthentication
     {
