@@ -45,7 +45,7 @@ namespace AtmConsole.App
                 var cardNumber = ConsoleUi.AskCardNumber();
 
                 ConsoleUi.LoginProgress();
-                var inputAccount = _atm.GetUserAccount(cardNumber);
+                var inputAccount = _atm.GetUserAccountByCardNumber(cardNumber);
 
                 // TODO could lock terminal for 30 secs after n failed card numbers
                 if (inputAccount == null)
@@ -73,9 +73,9 @@ namespace AtmConsole.App
 
                 if (cardVerified == false)
                 {
-                    Utility.PrintMessage("\nInvalid Card Number or PIN .", false);
+                    Utility.PrintMessage("\nInvalid Card Number or PIN.", false);
                     Console.WriteLine($"Pin check failed {selected.AuthFailsCount} times");
-                    break;
+                    continue;
                 }
 
                 Console.Clear();

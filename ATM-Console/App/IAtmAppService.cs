@@ -5,7 +5,8 @@ namespace AtmConsole.App
 {
     public interface IAtmAppService
     {
-        UserAccount GetUserAccount(long accountId);
+        UserAccount? GetUserAccountByCardNumber(long cardNumberId);
+        UserAccount? GetUserAccount(long accountId);
         void PlaceDeposit(long accountId, decimal amount, string? description);
         void Withdraw(long accountId, decimal amount, string? description);
         IEnumerable<Transaction> GetTransactions(long accountId);

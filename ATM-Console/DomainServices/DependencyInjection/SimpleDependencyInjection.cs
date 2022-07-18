@@ -8,6 +8,12 @@ namespace AtmConsole.DomainServices.DependencyInjection
         private readonly List<(Type AbstractType, Type ConcreteType, DependencyMode Mode)> _dependencies = new();
         private readonly List<(Type AbstractType, object Instance)> _singletons = new();
 
+        public SimpleDependencyInjection()
+        {
+            AddSingleton<IServiceProvider2>(this);
+            AddSingleton<IDependencyInjection>(this);
+        }
+
         public void AddSingleton<TAbstract, TConcrete>() where TConcrete : TAbstract
             => _dependencies.Add((typeof(TAbstract), typeof(TConcrete), DependencyMode.Singleton));
 

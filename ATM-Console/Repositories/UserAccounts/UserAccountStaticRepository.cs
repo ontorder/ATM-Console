@@ -68,7 +68,7 @@ namespace AtmConsole.Repositories.UserAccounts
             current.IsLocked = ua.IsLocked;
         }
 
-        public UserAccount Find(long userId) =>
-            _userAccounts.Single(_ => _.UserAccountId == userId);
+        public UserAccount? Find(long userId) =>
+            _userAccounts.SingleOrDefault(_ => _.UserAccountId == userId);
     }
 }

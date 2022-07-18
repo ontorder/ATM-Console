@@ -13,8 +13,8 @@ namespace AtmConsole.App
             _context = context;
         }
 
-        public UserAccount GetUserAccount(long userId)
-            => _context.UserAccounts.Find(userId);
+        public UserAccount? GetUserAccountByCardNumber(long cardNumber)
+            => _context.UserAccounts.Search(cardNumber);
 
         public void PlaceDeposit(long accountId, decimal amount, string? description)
         {
@@ -56,5 +56,8 @@ namespace AtmConsole.App
                 amount, timestamp, TransactionType.Transfer, toAccountId));
             toAccount.AccountBalance += amount;
         }
+
+        public UserAccount? GetUserAccount(long accountId)
+            => _context.UserAccounts.Find(accountId);
     }
 }
