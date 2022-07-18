@@ -2,7 +2,7 @@
 {
     public enum AppMenu
     {
-        CheckBalance = 1, //1
+        CheckBalance,
         PlaceDeposit,
         MakeWithdrawal,
         InternalTransfer,

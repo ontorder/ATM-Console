@@ -1,4 +1,8 @@
 ﻿using AtmConsole.App;
+using AtmConsole.Domain.Authentication;
+using AtmConsole.Domain.DependencyInjection;
+using AtmConsole.Domain.Transactions;
+using AtmConsole.Domain.UserAccounts;
 using AtmConsole.DomainServices.Authentication;
 using AtmConsole.Repositories.Transactions;
 using AtmConsole.Repositories.UserAccounts;
@@ -9,16 +13,18 @@ namespace AtmConsole
     {
         static void Main()
         {
-            var userAccounts = new UserAccountStaticRepository();
-            var transactions = new TransactionMemoryRepository();
-            var context = new Repositories.AtmContext(transactions, userAccounts);
+            IDependencyInjection di = new DomainServices.DependencyInjection.SimpleDependencyInjection();
+            di.AddSingleton<IUserAccountRepository, UserAccountStaticRepository>();
+            di.AddSingleton<ITransactionRepository, TransactionMemoryRepository>();
+            di.AddTransient<Repositories.AtmContext>();
+            di.AddTransient<IUserAuthentication, RetryUserAuthentication>();
+            di.AddTransient<ICardAuthentication, CardAuthentication>();
+            di.AddSingleton<IAtmAppService, AtmAppService>();
+            di.AddSingleton<AtmApp>();
 
-            var userAuth = new RetryUserAuthentication(userAccounts);
-            var cardAuth = new CardAuthentication();
+            var sp = di.GetServiceProvider();
+            var atmApp = sp.GetService<AtmApp>();
 
-            var atm = new AtmAppService(context);
-
-            var atmApp = new AtmApp(userAuth, cardAuth, atm);
             atmApp.Run();
         }
     }
