@@ -1,11 +1,11 @@
 ﻿using AtmConsole.Domain.Authentication;
-using AtmConsole.Domain.UserAccounts;
+using AtmConsole.Domain.BankAccounts;
 
 namespace AtmConsole.DomainServices.Authentication
 {
     public class CardAuthentication : ICardAuthentication
     {
-        public bool VerifyCard(UserAccount user, int pin)
+        public bool VerifyCard(BankAccount user, int pin)
         {
             return user.CardPin == pin;
         }

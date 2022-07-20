@@ -1,5 +1,5 @@
 ﻿using AtmConsole.Domain.Transactions;
-using AtmConsole.Domain.UserAccounts;
+using AtmConsole.Domain.BankAccounts;
 using AtmConsole.Repositories;
 
 namespace AtmConsole.App
@@ -13,7 +13,7 @@ namespace AtmConsole.App
             _context = context;
         }
 
-        public UserAccount? GetUserAccountByCardNumber(long cardNumber)
+        public BankAccount? GetUserAccountByCardNumber(long cardNumber)
             => _context.UserAccounts.Search(cardNumber);
 
         public void PlaceDeposit(long accountId, decimal amount, string? description)
@@ -57,7 +57,7 @@ namespace AtmConsole.App
             toAccount.AccountBalance += amount;
         }
 
-        public UserAccount? GetUserAccount(long accountId)
+        public BankAccount? GetUserAccount(long accountId)
             => _context.UserAccounts.Find(accountId);
     }
 }

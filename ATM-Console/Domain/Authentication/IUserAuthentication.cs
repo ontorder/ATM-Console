@@ -1,9 +1,9 @@
-﻿using AtmConsole.Domain.UserAccounts;
+﻿using AtmConsole.Domain.BankAccounts;
 
 namespace AtmConsole.Domain.Authentication
 {
     public interface IUserAuthentication
     {
-        void UpdateUserAuth(UserAccount ua, bool succeeded);
+        void UpdateUserAuth(BankAccount ua, bool succeeded);
     }
 }

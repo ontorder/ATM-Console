@@ -1,14 +1,14 @@
 ﻿using AtmConsole.Domain.Transactions;
-using AtmConsole.Domain.UserAccounts;
+using AtmConsole.Domain.BankAccounts;
 
 namespace AtmConsole.Repositories
 {
     public class AtmContext
     {
         public readonly ITransactionRepository Transactions;
-        public readonly IUserAccountRepository UserAccounts;
+        public readonly IBankAccountRepository UserAccounts;
 
-        public AtmContext(ITransactionRepository transactions, IUserAccountRepository userAccounts)
+        public AtmContext(ITransactionRepository transactions, IBankAccountRepository userAccounts)
         {
             Transactions = transactions;
             UserAccounts = userAccounts;

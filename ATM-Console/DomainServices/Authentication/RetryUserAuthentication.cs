@@ -1,16 +1,16 @@
 ﻿using AtmConsole.Domain.Authentication;
-using AtmConsole.Domain.UserAccounts;
+using AtmConsole.Domain.BankAccounts;
 
 namespace AtmConsole.DomainServices.Authentication
 {
     public class RetryUserAuthentication : IUserAuthentication
     {
-        private readonly IUserAccountRepository _users;
+        private readonly IBankAccountRepository _users;
 
-        public RetryUserAuthentication(IUserAccountRepository users)
+        public RetryUserAuthentication(IBankAccountRepository users)
             => _users = users;
 
-        public void UpdateUserAuth(UserAccount ua, bool succeeded)
+        public void UpdateUserAuth(BankAccount ua, bool succeeded)
         {
             if (ua.IsLocked) return;
 

@@ -1,12 +1,12 @@
 ﻿using AtmConsole.Domain.Transactions;
-using AtmConsole.Domain.UserAccounts;
+using AtmConsole.Domain.BankAccounts;
 
 namespace AtmConsole.App
 {
     public interface IAtmAppService
     {
-        UserAccount? GetUserAccountByCardNumber(long cardNumberId);
-        UserAccount? GetUserAccount(long accountId);
+        BankAccount? GetUserAccountByCardNumber(long cardNumberId);
+        BankAccount? GetUserAccount(long accountId);
         void PlaceDeposit(long accountId, decimal amount, string? description);
         void Withdraw(long accountId, decimal amount, string? description);
         IEnumerable<Transaction> GetTransactions(long accountId);

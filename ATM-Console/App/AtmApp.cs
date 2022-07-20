@@ -38,7 +38,7 @@ namespace AtmConsole.App
         public void CheckUserNumberAndPassword()
         {
             _selectedAccountId = null;
-            Domain.UserAccounts.UserAccount? selected = null;
+            Domain.BankAccounts.BankAccount? selected = null;
 
             do
             {
@@ -80,7 +80,7 @@ namespace AtmConsole.App
 
                 Console.Clear();
             } while (cardVerified == false);
-            _selectedAccountId = selected.UserAccountId;
+            _selectedAccountId = selected.BankAccountId;
         }
 
         public void CheckBalance()

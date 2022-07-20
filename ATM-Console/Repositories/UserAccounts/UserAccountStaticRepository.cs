@@ -1,16 +1,16 @@
-﻿using AtmConsole.Domain.UserAccounts;
+﻿using AtmConsole.Domain.BankAccounts;
 
 namespace AtmConsole.Repositories.UserAccounts
 {
-    public class UserAccountStaticRepository : IUserAccountRepository
+    public class UserAccountStaticRepository : IBankAccountRepository
     {
-        private List<UserAccount> _userAccounts;
+        private List<BankAccount> _userAccounts;
 
         public UserAccountStaticRepository()
         {
-            _userAccounts = new List<UserAccount>
+            _userAccounts = new List<BankAccount>
             {
-                new UserAccount(
+                new BankAccount(
                     id: 1,
                     accountBalance: 100000.00m,
                     accountNumber: 543210,
@@ -21,7 +21,7 @@ namespace AtmConsole.Repositories.UserAccounts
                     authFailsCount: 0
                 ),
 
-                new UserAccount(
+                new BankAccount(
                     id: 2,
                     accountBalance: 40000.00m,
                     accountNumber: 987654,
@@ -32,7 +32,7 @@ namespace AtmConsole.Repositories.UserAccounts
                     authFailsCount: 0
                 ),
 
-                new UserAccount(
+                new BankAccount(
                     id: 3,
                     accountBalance: 150000.00m,
                     accountNumber: 975310,
@@ -45,10 +45,10 @@ namespace AtmConsole.Repositories.UserAccounts
             };
         }
 
-        public IEnumerable<UserAccount> Get()
+        public IEnumerable<BankAccount> Get()
             => _userAccounts;
 
-        public UserAccount? Search(long cardNumber)
+        public BankAccount? Search(long cardNumber)
         {
             var account = _userAccounts.Where(ua => ua.CardNumber == cardNumber);
             if (!account.Any()) return null;
@@ -56,9 +56,9 @@ namespace AtmConsole.Repositories.UserAccounts
             return account.First();
         }
 
-        public void Update(UserAccount ua)
+        public void Update(BankAccount ua)
         {
-            var current = _userAccounts.Single(_ => _.UserAccountId == ua.UserAccountId);
+            var current = _userAccounts.Single(_ => _.BankAccountId == ua.BankAccountId);
             current.AccountNumber = ua.AccountNumber;
             current.AccountBalance = ua.AccountBalance;
             current.AuthFailsCount = ua.AuthFailsCount;
@@ -68,7 +68,7 @@ namespace AtmConsole.Repositories.UserAccounts
             current.IsLocked = ua.IsLocked;
         }
 
-        public UserAccount? Find(long userId) =>
-            _userAccounts.SingleOrDefault(_ => _.UserAccountId == userId);
+        public BankAccount? Find(long userId) =>
+            _userAccounts.SingleOrDefault(_ => _.BankAccountId == userId);
     }
 }
